@@ -1,0 +1,11 @@
+venv
+build
+dist
+temp
+output
+ffmpeg.exe
+devtools.txt
+.vscode
+raw_design
+__pycache__
+*.spec
