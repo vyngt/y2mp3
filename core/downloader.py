@@ -5,6 +5,7 @@ import re
 import os
 from pytube import YouTube, Playlist
 from core import settings
+from log.logger import logger
 
 
 VIDEO_PATTERN = r"^(https\:\/\/)?(www\.)?(youtube.com\/)watch\?v=.*"
@@ -64,6 +65,12 @@ def download(url: str):
     if videos:
         for video in videos:
             stream = video.streams.get_audio_only()
+            log = logger(
+                f"{video.title}",
+                fmt="%(asctime)s | %(name)s : %(message)s",
+                dfm="%Y-%m-%d %H:%M:%S",
+            )
             if stream:
+                log.info("Downloading")
                 stream.download(SAVE_TO)
-                print(f"{video.title}: Dowloaded")
+                log.info("Completed")
