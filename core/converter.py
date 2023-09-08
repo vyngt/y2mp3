@@ -6,7 +6,7 @@ import subprocess
 from log.logger import logger
 
 from core import settings
-from core.utils import discover, resource_path
+from utils.utils import discover, resource_path
 
 
 def _video_src(src=settings.VIDEO_SOURCE):

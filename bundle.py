@@ -7,7 +7,7 @@ PyInstaller.__main__.run(
     [
         "y2mp3.py",
         "--onefile",
-        # "-i=raw_design/icon.ico",
+        "--icon=raw_design/icon.ico",
         "--add-binary=ffmpeg/ffmpeg.exe;ffmpeg",
     ]
 )

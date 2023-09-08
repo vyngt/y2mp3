@@ -3,7 +3,8 @@ Program: Youtube to MP3
 """
 import argparse
 from log.logger import logger
-from core import downloader, converter, utils
+from core import downloader, converter
+from utils import utils
 
 
 def download_and_convert(url: str, output: str):
