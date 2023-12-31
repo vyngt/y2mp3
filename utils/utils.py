@@ -1,9 +1,31 @@
 """
 Utils
 """
+import itertools
 import os
 import sys
+import time
+
 from core import settings
+
+
+class Animation:
+    def __init__(self):
+        self.done = False
+
+    def reset(self):
+        self.done = False
+
+    def end(self):
+        self.done = True
+
+    def run(self, message: str = "Done"):
+        for frame in itertools.cycle(["|", "/", "-", "\\"]):
+            print("\b", frame, sep="", end="", flush=True)
+            time.sleep(0.1)
+            if self.done:
+                print(f"\b{message}")
+                break
 
 
 def discover(directory: str):
@@ -29,7 +51,7 @@ def resource_path(relative_path: str):
     """Get absolute path to resource, works for dev and for PyInstaller"""
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
+        base_path = sys._MEIPASS  # type:ignore
     except Exception:
         base_path = os.path.abspath(".")
 

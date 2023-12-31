@@ -2,9 +2,12 @@
 Program: Youtube to MP3
 """
 import argparse
-from log.logger import logger
-from core import downloader, converter
+
+from core import converter, downloader
+from core.logger import get_logger
 from utils import utils
+
+_logger = get_logger("Y2MP3")
 
 
 def download_and_convert(url: str, output: str):
@@ -12,26 +15,24 @@ def download_and_convert(url: str, output: str):
     Download video(s), then convert to MP3 format\n
     Finally, cleanup
     """
-    log = logger("Y2MP3", "%(name)s - %(message)s")
-    log.info("Starting")
+    _logger.info("Starting")
 
-    log.info("Phase 1/3: Downloading")
+    _logger.info("Phase 1/3: Downloading")
     downloader.download(url)
-    log.info("Phase 1/3: Done")
+    _logger.info("Phase 1/3: Done")
 
-    log.info("Phase 2/3: Converting")
+    _logger.info("Phase 2/3: Converting")
     converter.convert_to_audio(output)
-    log.info("Phase 2/3: Done")
+    _logger.info("Phase 2/3: Done")
 
-    log.info("Phase 3/3: Cleaning")
+    _logger.info("Phase 3/3: Cleaning")
     utils.cleanup()
-    log.info("Phase 3/3: Done")
+    _logger.info("Phase 3/3: Done")
 
-    log.info("Completed, Have fun ^ _ ^!")
+    _logger.info("Completed, Have fun ^ _ ^!")
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(
         prog="y2mp3",
         formatter_class=argparse.RawDescriptionHelpFormatter,
